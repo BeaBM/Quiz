@@ -12,6 +12,9 @@ router.get('/', function(req, res) {
   router.get('/author', function(req, res) {
   res.render('author', { autores: 'Beatriz Barakat Melián y Jonathan Hurtado Yrula' })
 });
+
+//AUtoload de comandos con quizId
+router.param('quizId', quizController.load); //autoload quizId
 /*
 router.get('/quizes/question', quizController.question);
 router.get('/quizes/answer', quizController.answer);
