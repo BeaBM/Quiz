@@ -9,6 +9,7 @@
        <table class="tabla">
        <% var i; for (i=0; i < quizes.length; i++) { %>
         <tr><td align=center><a href="quizes/<%= quizes[i].id %>">Pregunta <%= i+1 %>. <%= quizes[i].pregunta %></a></td>
+          <%if(session.user) {%>
         <td><a href="/quizes/<%= quizes[i].id %>/edit"><button>Editar</button></a></td>
         <td>
         <form method="post" action="quizes/<%= quizes[i].id %>?_method=delete">
@@ -18,14 +19,19 @@
             </button>
           </form>
         </td>
+             <% } %>
+
       </tr>
      <% } %>
     </table>
+    
     <form name="buscador" id="finder" action="/busqueda" method="get">
         Buscador: <input type="text" name="formulario" value="Quizes a buscar">
         <button type="submit">Buscar</button>
     </form>
-    <a href ="/quizes/new"> <button type="button">Crear pregunta</button></a>
+    <%if(session.user){%>
+  <a href="/quizes/new"><button>Crear pregunta</button></a>
+<%}%>
     <% if (errors.length) { %>
       <span id='ErrorMsgs'>
         Corregir errores:<br/>
