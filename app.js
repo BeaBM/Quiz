@@ -48,6 +48,21 @@ app.use(function(req, res, next) {
 
 app.use('/', routes);
 
+//Logout Entrega 2.5
+app.use(function(req,res,next){
+    if (req.session.user){
+        if(req.session.user.comienzo){
+            if((new Date().getTime()-req.session.user.comienzo)>120000){
+                req.session.user = undefined;
+               
+            }else {req.session.user.comienzo = new Date().getTime();}
+           
+        } else {req.session.user.comienzo = new Date().getTime();}
+
+    }
+    next();
+});
+
 
 
 // catch 404 and forward to error handler

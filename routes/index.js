@@ -4,6 +4,7 @@ var router = express.Router();
 var quizController = require('../controllers/quiz_controller.js')
 var commentController = require('../controllers/comment_controller.js');
 var sessionController = require('../controllers/session_controller.js');
+var statisticsController = require('../controllers/statistics_controller');
 
 
 /* GET home page. */
@@ -11,7 +12,7 @@ router.get('/', function(req, res) {
   res.render('index', { title: 'Quiz' , errors: []})
 });
   router.get('/author', function(req, res) {
-  res.render('author', { autores: 'Beatriz Barakat Melián y Jonathan Hurtado Yrula' })
+  res.render('author', { autores: 'Beatriz Barakat Melián y Jonathan Hurtado Yrula', errors: [] })
 });
 
 //AUtoload de comandos con quizId
@@ -44,6 +45,8 @@ router.post('/login', sessionController.create);  // crear sesión
 router.get('/logout', sessionController.destroy); // destruir sesión
 
 
+//Definición de rutas de estadísticas
+router.get('/quizes/statistics', statisticsController.show);
 
 
 module.exports = router;
