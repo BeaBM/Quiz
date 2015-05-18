@@ -32,13 +32,6 @@
     <%if(session.user){%>
   <a href="/quizes/new"><button>Crear pregunta</button></a>
 <%}%>
-    <% if (errors.length) { %>
-      <span id='ErrorMsgs'>
-        Corregir errores:<br/>
-        <% for (var i in errors) { %>
-           <span> <%= errors[i].message %> </span><br/>
-        <% } %>
-      </span>
-    <% } %>
+    
   </body>
 </html>
