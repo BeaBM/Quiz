@@ -7,6 +7,10 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
   </head>
   <body>    
+
+    <%if (quiz.image){%>    
+ <p><img class="quiz_img" style="max-height:300px;" src="/media/<%= quiz.image %>"></p>
+ <%}%>
     <form method ="get" action ="/quizes/<%= quiz.id%>/answer">
 
       Pregunta: <%= quiz.pregunta %> <p>
