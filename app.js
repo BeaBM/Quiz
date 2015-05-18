@@ -57,7 +57,9 @@ app.use(function(req,res,next){
                
             }else {req.session.user.comienzo = new Date().getTime();}
            
-        } else {req.session.user.comienzo = new Date().getTime();}
+        } else {
+          req.session.user.comienzo = new Date().getTime();
+        }
 
     }
     next();
