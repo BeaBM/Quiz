@@ -5,6 +5,7 @@ var quizController = require('../controllers/quiz_controller.js')
 var commentController = require('../controllers/comment_controller.js');
 var sessionController = require('../controllers/session_controller.js');
 var statisticsController = require('../controllers/statistics_controller');
+var userController = require('../controllers/user_controller');
 
 
 /* GET home page. */
@@ -18,6 +19,7 @@ router.get('/', function(req, res) {
 //AUtoload de comandos con quizId
 router.param('quizId', quizController.load); //autoload quizId
 router.param('commentId', commentController.load); //autoload commentId
+router.param('userId', userController.load); //autoload userId
 
 /*
 router.get('/quizes/question', quizController.question);
@@ -40,14 +42,11 @@ router.get('/quizes/:quizId(\\d+)/comments/:commentId(\\d+)/publish',
 	                                    sessionController.loginRequired, commentController.publish);
 
 //Definición de rutas Users
-
-//Definición de rutas de cuenta
-router.get('/user', userController.new); //formulario sign up
-router.post('/user', userController.create); //registrar
-router.get('/user/:userId(\\d+)/edit',		sessionController.loginRequired, userController.ownershipRequired, userController.edit);
-router.put('/user/:userId(\\d+)', 			sessionController.loginRequired, userController.ownershipRequired, userController.update);
-router.delete('/user/:userId(\\d+)', 		sessionController.loginRequired, userController.ownershipRequired, userController.destroy);
-router.get('/user/:userId(\\d+)/quizes',	sessionController.loginRequired, userController.ownershipRequired, quizController.index);
+router.get('/user', userController.new);
+router.post('/user', userController.create);
+router.get('/user/:userId(\\d+)/edit',		sessionController.loginRequired, userController.edit);
+router.put('/user/:userId(\\d+)', 			sessionController.loginRequired, userController.update);
+router.delete('/user/:userId(\\d+)', 		sessionController.loginRequired, userController.destroy);
 
 
 
