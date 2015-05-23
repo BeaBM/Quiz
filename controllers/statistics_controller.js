@@ -18,13 +18,11 @@ function no_quest(q,c){
 	for (var i =0; i<c.length; i++){
 		if(quest[c[i].QuizId]) quest[c[i].QuizId]+=1;
 		else quest[c[i].QuizId]=1;
-		}
-
-		full=0;
+	}
+	full=0;
 	for(var k = 0; k<quest.length; k++){
 		if(quest[k]) full++;
 	}
-
 	return q.length-full;
 }
 
@@ -32,26 +30,20 @@ function no_quest(q,c){
 
 // GET /quizes/statistics
 exports.show = function(req,res){
-
 	models.Quiz.findAll().then(function(quizes){
-
 		models.Comment.findAll({where: {publicado: true}}).then(function(comment){
 			if(comment ==undefined) comment = [];
 			if(quizes == undefined ) quizes = [];
 			var nohay= no_quest(quizes,comment);
 			var questions =num_quest(quizes);
-
-				res.render('quizes/stats.ejs',{
+			res.render('quizes/stats.ejs',{
 				questions: questions, 
 				comentarios: num_comm(comment),
 				media: cfq(quizes,comment),
 				nohay: no_quest(quizes,comment),
 				hay: questions - nohay,
-				errors:[]});})
-
-			
-		});
-
-
-
+				errors:[]
+			});
+		})
+	});
 };

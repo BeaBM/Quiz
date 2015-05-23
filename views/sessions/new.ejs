@@ -1,19 +1,26 @@
+<head>
+    <title>Quiz</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
 <h2>Login</h2>
 
 <form method='POST' action='/login'>
-
   <div class="field">
-    <label for="login">Login:</label><br />
-    <input type="text" id="login" name="login" size="30" />
+    <label for="login">
+       Login: 
+    </label><br>
+    <input type="text" id="login" name="login" size="30" autofocus/>
   </div>
-
+  <br>
   <div class="field">
-    <label for="password">Password:</label><br />
+    <label for="password">
+       Password: 
+    </label><br>
     <input type="password" id="password" name="password" size="30" />
   </div>
-
+  <br>
   <div class="actions">
-    <input name="commit" type="submit" value="Login" />
+    <input name="commit" type="submit" value="Login" class="testbutton"/>
   </div>
-
 </form>

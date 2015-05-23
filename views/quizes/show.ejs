@@ -7,34 +7,93 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
   </head>
   <body>    
-
-    <%if (quiz.image){%>    
- <p><img class="quiz_img" style="max-height:300px;" src="/media/<%= quiz.image %>"></p>
- <%}%>
+    <div>
+      <%if (quiz.image){%>    
+          <p>
+            <img class="quiz_img" 
+            style="max-height:300px" 
+            src="/media/<%= quiz.image %>">
+          </p>
+      <%}
+      if(session.user){
+        if(favo > 0 ){ 
+          var color = 'yellow'; 
+          var method = "delete";
+          var onClick = "confirmar()"
+        } 
+        else { 
+          var color = 'white'; 
+          var method = "put"; 
+          var onClick = "añadido()";
+        }%>
+        <script>
+          function confirmar(){
+              return alert('Quitado de favoritos');
+          }
+        </script>
+        <script>
+          function añadido(){
+              return alert('¡Añadido a favoritos!');
+          }
+        </script>
+        <div>
+          <form method="post" action="/user/<%= session.user.id %>/favourites/<%=quiz.id%>?_method=<%=method%>" >
+            <input id="fav"type="image" 
+              src="/images/star_<%=color%>.png" 
+              width=40 px
+              height=40 px
+              onClick="<%=onClick%>"/>
+          </form>
+        </div>  
+      <%}%>
+    </div>
     <form method ="get" action ="/quizes/<%= quiz.id%>/answer">
-
-      Pregunta: <%= quiz.pregunta %> <p>
-      <input type ="text" name="respuesta" value="Respuesta"/>
-      <input type ="submit" value="Enviar"/>
+      <p>
+      Pregunta: <%= quiz.pregunta %> 
+      </p>
+      <input type ="text" name="respuesta" value="Respuesta" autofocus class="tb5"/>
+      <input type ="submit" value="Enviar" class="testbutton"/>
     </form>
-
-    <p><a href="/quizes/<%= quiz.id %>/comments/new"><button>Nuevo comentario</button></a></p>
+    <p>
+      <a href="/quizes">
+        <button class="testbutton">
+          Volver
+        </button>
+      </a>
+    </p>
+    <p>
+      <a href="/quizes/<%= quiz.id %>/comments/new">
+        <button class="testbutton">
+          Nuevo comentario
+        </button>
+      </a>
+    </p>
 
 <!-- Parte de moderación-->
 
-  <p><strong>Comentarios: </strong></p>
-<%for (index in quiz.Comments){ %>
-  <% if(quiz.Comments[index].publicado ){%>
-  <p>- <%= quiz.Comments[index].texto %></p>
-  <% } else if (session.user && (session.user.isAdmin || (session.user && quiz.UserId === session.user.id))){ %>
-  <p>- <%= quiz.Comments[index].texto %></p>
-    
-      <a href="/quizes/<%= quiz.id %>/comments/<%= quiz.Comments[index].id %>/publish"> <button>Publicar</button></a>
-      
-    
-    </p>
+  <p>
+    <strong>
+      Comentarios: 
+    </strong>
+  </p>
+  <%for (index in quiz.Comments){ %>
+    <% if(quiz.Comments[index].publicado ){%>
+      <p>
+        - <%= quiz.Comments[index].texto %>
+      </p>
+    <% } 
+    else if (session.user && (session.user.isAdmin || (session.user && quiz.UserId === session.user.id))){ %>
+      <p>
+        - <%= quiz.Comments[index].texto %>
+      </p>    
+      <a href="/quizes/<%= quiz.id %>/comments/<%= quiz.Comments[index].id %>/publish">
+       <button class="testbutton">
+        Publicar
+       </button>
+      </a>      
+      </p>
+    <%}%>
   <%}%>
-<%}%>
   </body>
 </html>
 

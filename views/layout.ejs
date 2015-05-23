@@ -1,62 +1,118 @@
 <!DOCTYPE html>
 <html lang ="en">
   <head>
-   <meta charset="utf-8"><title> Preguntas </title>
+   <meta charset="utf-8"/>
+   <title> Preguntas </title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel='stylesheet' 
-    	type="text/css"
-    	media='only screen and (min-width: 530px) and (min-device-width: 480px)'
-    	href='/stylesheets/wide.css' />
+    type="text/css"
+    media='only screen and (min-height: 530px) and (min-width: 480px)'
+    href='/stylesheets/wide.css' />
 
     <link rel='stylesheet' 
-    	type="text/css"
-    	media='only screen and (max-width: 480px)'
-    	href='/stylesheets/smartphone.css' />
+    type="text/css"
+    media='only screen and (max-width: 480px)'
+    href='/stylesheets/smartphone.css' />
   </head>
 
   <body>
   	<div id="page-wrap">
   		<header class="main" id="h1">
-    <%if(!session.user){%>
-      <span class="right">
-        <a href="/user">Sign up</a>
-        <a href="/login">Login </a></span>
-    <%}else{%>
-      <span class="right"> <%= session.user.username %>
-        - <a href="/user/<%=session.user.id%>/edit">Settings</a>  
-        - <a href="/logout"> Logout</a></span>
-    <%}%>
-    
-    <h2>Quiz<span>: el juego de las preguntas</span></h2>
-  </header>
-	    <nav class="main" id="n1" role="navigation">
-	    	<span><a href="/"> Inicio </a></span>
-	    	<span><a href="/quizes"> Preguntas</a></span>
-        <%if(session.user){%>
-          <span><a id="bar" href="/user/<%=session.user.id%>/quizes">Mis preguntas</a></span>
+        <h2>Quiz: el juego de las preguntas</h2>
+    </header>
+      <%if(!session.user){%>
+          <nav class="right" id="button">
+            <ul>
+              <li>
+                <a href="/user">
+                   Sign up
+                </a>
+              </li>
+              <li>
+                <a href="/login">
+                   Login
+                </a>
+              </li>
+            </ul>
+          </nav>
+        <%}else{%>
+          <nav class="right" id="button"> 
+            <ul>
+              <li>
+                  <%= session.user.username %>
+              </li>
+              <li>
+                <a href="/user/<%=session.user.id%>/edit">
+                    Settings
+                </a>
+              </li>
+              <li>
+                <a href="/logout">
+                    Logout
+                </a>
+              </li>
+            </ul>
+          </nav>
         <%}%>
-	    	<span><a href="/author"> Créditos</a></span>
-        <span><a href="/quizes/statistics">Estadísticas</a></span> 
-
+	    <nav class="menu" id="button" role="navigation">
+        <ul>
+  	    	<li>
+            <a href="/">
+               Inicio 
+            </a>
+          </li>
+  	    	<li>
+            <a href="/quizes">
+               Preguntas 
+            </a>
+          </li>
+          <%if(session.user){%>
+            <li>
+              <a href="/user/<%=session.user.id%>/quizes">
+                   Mis preguntas 
+              </a>
+            </li>
+            <li>
+              <a href="/user/<%=session.user.id%>/favourites">
+                 Mis favoritos 
+              </a>
+            </li>
+          <%}%>
+  	    	<li>
+            <a href="/author">
+                 Créditos 
+            </a>
+          </li>
+          <li>
+            <a href="/quizes/statistics">
+                 Estadísticas 
+            </a>
+          </li> 
+        </ul>
 	    </nav>
-
-  <section class="main" id="s1">
-    <% if (errors.length) { %>
-      <span id='ErrorMsgs'>
-        Corregir errores:<br/>
-        <% for (var i in errors) { %>
-           <span> <%= errors[i].message %> </span><br/>
+      <section class="main" id="s1">
+        <% if (errors.length) { %>
+          <span id='ErrorMsgs'>
+            Corregir errores:<br/>
+            <% for (var i in errors) { %>
+               <span> <%= errors[i].message %> </span><br/>
+            <% } %>
+          </span>
         <% } %>
-      </span>
-    <% } %>
 
-    <div><%- body %></div>
-  </section>
-
-	    <footer class="main" id="f1">
-	    	<a href="http://es.wikipedia.org/wiki/Quiz">¿Qué es un Quiz?</a>
-	    	<a href="https://github.com/BeaBM/quiz/tree/master">Proyecto en Github</a>
-	    </footer>
+        <div><%- body %></div>
+      </section>
     </div>
   </body>
+   <footer class="main" align="bottom" id="f1">
+    <a class="h1"href="http://es.wikipedia.org/wiki/Quiz">
+      ¿Qué es un Quiz?
+    </a><br>
+    <form action="https://github.com/BeaBM/quiz/tree/master">
+      <input type="image" 
+                src="/images/github-1024-black.png" 
+                width=40 px
+                height=40 px/>
+      </form>
+  </footer>
 </html>

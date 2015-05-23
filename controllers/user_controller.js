@@ -20,8 +20,9 @@ exports.load = function(req,res,next,userId){
 			req.user = user;
 			console.log("asignacion");
 			next();
-		} else {next(new Error('No existe userId=' + userId))}
-
+		} else {
+			next(new Error('No existe userId=' + userId))
+		}
 	}).catch(function(error){next(error)});
 };
 

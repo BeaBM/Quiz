@@ -31,19 +31,24 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Helpers dinamicos:
 app.use(function(req, res, next) {
-
-  // si no existe lo inicializa
-  if (!req.session.redir) {
+    // si no existe lo inicializa
+    if (!req.session.redir) {
     req.session.redir = '/';
-  }
-  // guardar path en session.redir para despues de login
-  if (!req.path.match(/\/login|\/logout|\/user/)) {
+    }
+    // guardar path en session.redir para despues de login
+    if (!req.path.match(/\/login|\/logout|\/user/)) {
     req.session.redir = req.path;
-  }
-
-  // Hacer visible req.session en las vistas
-  res.locals.session = req.session;
-  next();
+    }
+    //guardar path en session.redir para despues favrotiso en mis preguntas
+    if(req.path.match(/\/user\/[0-9]+\/favourites|quizes/)) {
+        if(!req.path.match(/favourites\/[0-9]+/)){
+            req.session.redir = req.path;
+            console.log("The adress of Redir: " + req.session.redir.toString());
+        }
+    }
+    // Hacer visible req.session en las vistas
+    res.locals.session = req.session;
+    next();
 });
 
 app.use('/', routes);
@@ -53,14 +58,12 @@ app.use(function(req,res,next){
     if (req.session.user){
         if(req.session.user.comienzo){
             if((new Date().getTime()-req.session.user.comienzo)>120000){
-                req.session.user = undefined;
-               
-            }else {req.session.user.comienzo = new Date().getTime();}
-           
-        } else {
-          req.session.user.comienzo = new Date().getTime();
+                delete req.session.user;
+                next ();
+                return;
+            } 
         }
-
+        req.session.user.comienzo = new Date();
     }
     next();
 });

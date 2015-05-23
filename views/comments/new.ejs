@@ -1,8 +1,17 @@
+<head>
+    <title>Quiz</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  </head>
 Añadir comentario: <p>
 
 <form method="post" action="/quizes/<%=quizid%>/comments/" >      
-  <input type="text" id="comment" name="comment[texto]" value=""/> <p>
-  <button type="submit">Enviar</button>
+  <input type="text" id="comment" name="comment[texto]" value="" class="tb5" autofocus/> <p>
+  <button type="submit" class="testbutton">Enviar</button>
 
-  <a href ="/quizes/<%=quizid%>"> <button type="button">Volver</button></a>
+  <a href ="/quizes/<%=quizid%>" >
+  	<button type="button" class="testbutton">
+  		Volver
+  	</button>
+  </a>
 </form>

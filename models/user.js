@@ -22,8 +22,6 @@ module.exports = function(sequelize, DataTypes){
 					}
 				}
 			},
-
-
 			password: {
 				type: DataTypes.STRING,
 				validate: { notEmpty: {msg: "->No has metido la password,majo!"}},
@@ -42,7 +40,8 @@ module.exports = function(sequelize, DataTypes){
 				type: DataTypes.BOOLEAN,
 				defaultValue: false
 			}
-		},{
+		},
+		{
 			instanceMethods: {
 				verifyPassword: function(password){
 					var encripted = crypto.createHmac('sha1',key)
@@ -52,7 +51,6 @@ module.exports = function(sequelize, DataTypes){
 				}
 			}
 		}
-
 	);
 	return User;
 }

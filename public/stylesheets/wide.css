@@ -1,7 +1,64 @@
-body {background: #efe3e3;}
-
+body {background: rgba(252,182,185,1);
+background: -moz-linear-gradient(-45deg, rgba(252,182,185,1) 0%, rgba(252,182,185,1) 21%, rgba(107,28,255,1) 50%, rgba(144,125,233,1) 64%, rgba(192,250,204,1) 82%, rgba(188,224,238,1) 100%);
+background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(252,182,185,1)), color-stop(21%, rgba(252,182,185,1)), color-stop(50%, rgba(107,28,255,1)), color-stop(64%, rgba(144,125,233,1)), color-stop(82%, rgba(192,250,204,1)), color-stop(100%, rgba(188,224,238,1)));
+background: -webkit-linear-gradient(-45deg, rgba(252,182,185,1) 0%, rgba(252,182,185,1) 21%, rgba(107,28,255,1) 50%, rgba(144,125,233,1) 64%, rgba(192,250,204,1) 82%, rgba(188,224,238,1) 100%);
+background: -o-linear-gradient(-45deg, rgba(252,182,185,1) 0%, rgba(252,182,185,1) 21%, rgba(107,28,255,1) 50%, rgba(144,125,233,1) 64%, rgba(192,250,204,1) 82%, rgba(188,224,238,1) 100%);
+background: -ms-linear-gradient(-45deg, rgba(252,182,185,1) 0%, rgba(252,182,185,1) 21%, rgba(107,28,255,1) 50%, rgba(144,125,233,1) 64%, rgba(192,250,204,1) 82%, rgba(188,224,238,1) 100%);
+background: linear-gradient(135deg, rgba(252,182,185,1) 0%, rgba(252,182,185,1) 21%, rgba(107,28,255,1) 50%, rgba(144,125,233,1) 64%, rgba(192,250,204,1) 82%, rgba(188,224,238,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcb6b9', endColorstr='#bce0ee', GradientType=1 );}
+/*http://www.cssmatic.com/es/gradient-generator#*/
 #page-wrap:after { content: "Wide layout";}
 
-nav {float: left; width: 15%; height: 200px;}
-nav span {margin: 0px 100px 0px 0px;}
-footer {clear: both; display: block;}
+/*nav {float: left;	 width: 15%; height: 500px;}
+nav span {margin: 0px 10px 0px 0px;}*/
+footer {clear: both;
+		 display: block;}
+
+/*http://www.cssportal.com*/
+#button {
+	position: relative;
+	text-align: center;
+	width: 12em;
+	border-right: 1px solid #000;
+	padding: 0 0 1em 0;
+	margin-bottom: 1em;
+	font-family: 'Trebuchet MS', 'Lucida Grande', Verdana, Arial, sans-serif;
+	background-color: #90bade;
+	color: #333;
+}
+
+#button ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+	
+#button li {
+	border-bottom: 1px solid #90bade;
+	margin: 0;
+	list-style: none;
+	list-style-image: none;
+}
+	
+#button li a {
+	display: block;
+	padding: 5px 5px 5px 0.5em;
+	border-left: 10px solid #1958b7;
+	border-right: 10px solid #508fc4;
+	background-color: #2175bc;
+	color: #fff;
+	text-decoration: none;
+	width: 100%;
+}
+
+html>body #button li a {
+	width: auto;
+}
+
+#button li a:hover {
+	border-left: 10px solid #1c64d1;
+	border-right: 10px solid #5ba3e0;
+	background-color: #2586d7;
+	color: #fff;
+}

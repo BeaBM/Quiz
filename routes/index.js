@@ -7,6 +7,7 @@ var commentController = require('../controllers/comment_controller.js');
 var sessionController = require('../controllers/session_controller.js');
 var statisticsController = require('../controllers/statistics_controller');
 var userController = require('../controllers/user_controller');
+var favController = require('../controllers/fav_controller');
 
 
 /* GET home page. */
@@ -30,7 +31,7 @@ router.get('/quizes/answer', quizController.answer);
 router.get('/quizes',                      quizController.index);
 router.get('/quizes/:quizId(\\d+)',        quizController.show);
 router.get('/quizes/:quizId(\\d+)/answer', quizController.answer);
-router.get('/busqueda',                    quizController.busqueda);
+//router.get('/busqueda',                    quizController.index);
 router.get('/quizes/new',                  sessionController.loginRequired, quizController.new);
 router.post('/quizes/create', 			   sessionController.loginRequired, multer({dest:'./public/media/'}), quizController.create);
 router.get('/quizes/:quizId(\\d+)/edit',   sessionController.loginRequired, quizController.ownershipRequired, quizController.edit);
@@ -50,7 +51,11 @@ router.put('/user/:userId(\\d+)', 			sessionController.loginRequired, userContro
 router.delete('/user/:userId(\\d+)', 		sessionController.loginRequired, userController.ownershipRequired, userController.destroy);
 router.get('/user/:userId(\\d+)/quizes',	sessionController.loginRequired, userController.ownershipRequired, quizController.index);
 
-
+//Definición de la ruta favoritos
+//Definicion de rutas para favoritos
+router.put('/user/:userId(\\d+)/favourites/:quizId(\\d+)', sessionController.loginRequired, favController.new);
+router.delete('/user/:userId(\\d+)/favourites/:quizId(\\d+)', sessionController.loginRequired, favController.destroy);
+router.get('/user/:userId(\\d+)/favourites', sessionController.loginRequired, favController.listFav);
 
 
 
